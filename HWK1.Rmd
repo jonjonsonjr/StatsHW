@@ -65,7 +65,7 @@ rowCounts <- as.vector(table(rowSums(is.na(BABIES))))
 **Prob 5:** Sort the values in `CLEAN` by `bwt`, `gestation`, and `age`.  Store the sorted values in a data frame named `BGA` and show the last six rows of `BGA`.
 
 ```{r prob5}
-BGA = data.frame(bwt=sort(CLEAN$bwt), gestation=sort(CLEAN$gestation), age=sort(CLEAN$age))
+BGA = CLEAN[order(CLEAN$bwt, CLEAN$gestation, CLEAN$age),]
 tail(BGA)
 ```
 
