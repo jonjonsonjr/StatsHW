@@ -111,15 +111,15 @@ lines(density(smokers))
 **Prob 9:** Based on the histograms, characterize the distribution of baby birth weight for both non-smoking and smoking mothers.
 
 ```{r prob9}
-# THREE S'S
-# It is centered at `r median(foo)` the spread is `r IQR(foo)` and 
-mean(nonsmokers)
-median(nonsmokers)
+# Center 
 mean(smokers)
-median(smokers)
+mean(nonsmokers)
+#Spread
+sd(smokers)
+sd(nonsmokers)
 ```
 
-> **Prob 9 answer:** Smoker birth weights are skewed slightly to the right, as the birth weight is slightly lowered.
+> **Prob 9 answer:** Both smoker and non-smoker birthweights are non-skewed. Because of this, we use mean to show that smoker birthweights center at `r mean(smokers)` and that non-smoker birthweights center at `r median(nonsmokers)`. This lack of skew also leads us to use standard deviation to show spread, `r sd(smokers)` for smokers and `r sd(nonsmokers)` for nonsmokers.
 
 **Prob 10:** Create side-by-side boxplots to compare the birth weights of babies whose mother's never smoked and those who currently smoke.  Use base graphs (`boxplot()`), lattice graphs (`bwplot()`), and ggplot2 graphs to create the boxplots.  Label the $y$-axis "Weight in Ounces".
 
