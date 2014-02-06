@@ -144,10 +144,16 @@ title(main="Smoker Birth Weights", ylab="Weight in Ounces")
 (`parity = 0`) and those who are not (`parity = 1`)?
 
 ```{r prob11}
+parity0 <- subset(BABIES, parity == 0)
+parity1 <- subset(BABIES, parity == 1)
+weightFirst <- median(parity0$bwt)
+weightOther <- median(parity1$bwt)
+
 #
 ```
 
-> **Prob 11 answer:** 
+> **Prob 11 answer:** The median weight difference between 
+babies who are firstborn and those who are not is **`r weightFirst - weightOther`** ounces
 
 **Prob 12:** Create a single graph of the densities for pre-pregnancy `weight` for mothers who have never smoked and for mothers who currently smoke.  Make sure both densities appear in the same graph and have a legend.  Label the $x$-axis "Weight in Pounds".  *Extra credit if you create the requested graph using base, lattice, and ggplot2 graphics.*
 
