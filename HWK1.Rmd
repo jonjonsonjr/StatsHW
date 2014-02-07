@@ -230,11 +230,15 @@ head(CLEANP)
 help determine the shape of the BMI distribution.  Label the $x$-axis "BMI ($kg/m^2$)".
 
 ```{r prob16}
-hist(CLEANP$BMI, xlab="BMI(kg/m^2)")
-#
+# Shape
+hist(CLEANP$BMI, xlab="BMI(kg/m^2)", main="Distribution of BMI")
+# Center
+median(CLEANP$BMI)
+# Spread
+IQR(CLEANP$BMI)
 ```
 
-> **Prob 16 answer:** 
+> **Prob 16 answer:** As the above histogram shows, the distribution of BMI is right-skewed. Because of this, we use median to find that its center is `r median(CLEANP$BMI)` and IQR to find that its spread is `r IQR(CLEANP$BMI)`
 
 **Prob 17:** Group pregnant mothers according to their BMI quartile. Find the mean and standard deviation for baby birth weights in each quartile for mothers who have never smoked and those who currently smoke.   Find the median and IQR for baby birth weights in each quartile for mothers who have never smoked and those who currently smoke. Based on your answers, would you characterize birth weight in each group as relatively symmetric or skewed? Create histograms and densities of `bwt` conditioned on `BMI` quartiles and whether the mother smokes to verify your previous assertions about the shape.
 
