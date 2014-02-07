@@ -261,11 +261,13 @@ smokerStats
 
 
 ```{r prob17b}
-#
+p <- ggplot(data=CLEANP, aes(x=bwt))
+p + geom_histogram() + facet_grid(smoke ~ quart)
 ```
 
 ```{r prob17c}
-#
+p <- ggplot(data=CLEANP, aes(x=bwt))
+p + geom_density() + facet_grid(smoke ~ quart)
 ```
 
 > **Prob 17 answer:**  
