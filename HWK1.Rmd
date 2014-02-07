@@ -172,14 +172,26 @@ babies who are firstborn and those who are not is **`r weightFirst - weightOther
 **Prob 13:** Characterize the pre-pregnancy distribution of `weight` for mothers who have never smoked and for mothers who currently smoke.
 
 ```{r prob13}
+nonsmokersweight <- subset(BABIES, smoke == 0)$weight
+smokersweight <- subset(BABIES, smoke == 1)$weight
+#Center
+mean(nonsmokersweight)
+mean(smokersweight)
+#Spread
+sd(nonsmokersweight)
+sd(smokersweight)
+
+hist(smoke1$weight, xlab = "Weight (lbs.)",main = "Histogram of Pre-Pregnancy Smoker Weight")
+hist(smoke0$weight, xlab = "Weight (lbs.)",main = "Histogram of Pre-Pregnancy Non-Smoker Weight")
 #
 ```
 
-> **Prob 13 answer:** 
+> **Prob 13 answer:** As the above histograms show, the weight distribution between smokers and non-smokers is only slightly skewed.  This is evident from comparison of the median weight of smokers **`r median(smokersweight)`** lbs. and the mean weight of non-smokers **`r mean(nonSmokersweight)`** lbs.
 
 **Prob 14:** What is the mean pre-pregnancy weight difference between mothers who do not smoke and those who do?  Can you think of any reasons not to use the mean as a measure of center to compare pre-pregnancy weights in this problem?
 
 ```{r prob14}
+
 #
 ```
 
