@@ -100,12 +100,12 @@ lines(density(smokers))
 ```
 
 ```{r prob8b}
-#
+
 ```
 
 
 ```{r, prob8c}
-#
+
 ```
 
 **Prob 9:** Based on the histograms, characterize the distribution of baby birth weight for both non-smoking and smoking mothers.
@@ -142,7 +142,7 @@ print(plot2, position = c(0.5, 0, 1, 1))
 ```
 
 ```{r prob10c}
-#
+
 ```
 
 **Prob 11:** What is the median weight difference between babies who are firstborn
@@ -154,7 +154,6 @@ parity1 <- subset(BABIES, parity == 1)
 weightFirst <- median(parity0$bwt)
 weightOther <- median(parity1$bwt)
 
-#
 ```
 
 > **Prob 11 answer:** The median weight difference between 
@@ -175,11 +174,11 @@ legend("topright", "(x, y)", c("nonsmokers", "smokers"), col=c("tomato2", "purpl
 ```{r prob12b}
 require(ggplot2)
 ggplot() + geom_density(aes(CLEAN$weight[CLEAN$smoke == 0]), fill = "skyblue") + geom_density(aes(CLEAN$weight[CLEAN$smoke == 1]), fill = "green",alpha=I(0.2)) + labs(x = "Weight in pounds",title = "Pre-pregnancy weight of smokers vs non-smokers")
-#
+
 ```
 
 ```{r prob12c}
-#
+
 ```
 
 **Prob 13:** Characterize the pre-pregnancy distribution of `weight` for mothers who have never smoked and for mothers who currently smoke.
@@ -198,7 +197,7 @@ sd(smokersweight)
 
 hist(smokersweight, xlab = "Weight (lbs.)",main = "Histogram of Pre-Pregnancy Smoker Weight")
 hist(nonsmokersweight, xlab = "Weight (lbs.)",main = "Histogram of Pre-Pregnancy Non-Smoker Weight")
-#
+
 ```
 
 > **Prob 13 answer:** As the above histograms show, the weight distribution between smokers and non-smokers is only slightly skewed.  This is evident through comparison of the median weight of smokers **`r median(smokersweight)`** lbs. and the mean weight of non-smokers **`r mean(nonsmokersweight)`** lbs.  The slight skew is reflected in the standard deviation of smokers and non-smokers respectively: **`r sd(smokersweight)`** and **`r sd(nonsmokersweight)`**. 
@@ -210,7 +209,6 @@ nonsmokersweight <- subset(BABIES, smoke == 0)$weight
 smokersweight <- subset(BABIES, smoke == 1)$weight
 ans <- mean(smokersweight)-mean(nonsmokersweight)
 
-#
 ```
 
 > **Prob 14 answer:** The mean pre-pregnancy weight difference between mothers who do not smoke and those who do is **`r mean(smokersweight)-mean(nonsmokersweight)`** pounds.
@@ -222,8 +220,6 @@ ans <- mean(smokersweight)-mean(nonsmokersweight)
 CLEANP<-CLEAN
 CLEANP$BMI<-CLEAN$weight*0.45359/(CLEAN$height*0.0254)^2
 head(CLEANP)
-
-#
 ```
 
 **Prob 16:** Characterize the distribution of BMI.  Create either a histogram or density plot to
