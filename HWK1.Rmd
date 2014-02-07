@@ -276,7 +276,8 @@ p + geom_density() + facet_grid(smoke ~ quart)
 smokes conditioned on `BMI` quartiles.  What do you notice using the boxplots?
 
 ```{r prob18}
-#
+p <- ggplot(data=CLEANP, aes(x=0, y=bwt))
+p + geom_boxplot() + facet_grid(smoke ~ quart)
 ```
 
 > **Prob 18 answer:** 
