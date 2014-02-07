@@ -152,7 +152,13 @@ title(main="Smoker Birth Weights", ylab="Weight in Ounces")
 **Prob 12:** Create a single graph of the densities for pre-pregnancy `weight` for mothers who have never smoked and for mothers who currently smoke.  Make sure both densities appear in the same graph and have a legend.  Label the $x$-axis "Weight in Pounds".  *Extra credit if you create the requested graph using base, lattice, and ggplot2 graphics.*
 
 ```{r prob12a}
-#
+par(mfrow=c(1,1))
+nonsmokers <- density(subset(CLEAN, smoke == 0)$weight)
+smokers <- density(subset(CLEAN, smoke == 1)$weight)
+plot(range(nonsmokers$x, smokers$x), range(nonsmokers$y, smokers$y), type = "n", xlab = "Weight in Pounds", ylab="Density")
+lines(nonsmokers, col="tomato2")
+lines(smokers, col="purple")
+legend("topright", "(x, y)", c("nonsmokers", "smokers"), col=c("tomato2", "purple"), pch=19)
 ```
 
 ```{r prob12b}
