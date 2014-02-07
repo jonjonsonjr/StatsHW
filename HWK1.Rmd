@@ -234,8 +234,22 @@ hist(CLEANP$BMI, xlab="BMI(kg/m^2)")
 **Prob 17:** Group pregnant mothers according to their BMI quartile. Find the mean and standard deviation for baby birth weights in each quartile for mothers who have never smoked and those who currently smoke.   Find the median and IQR for baby birth weights in each quartile for mothers who have never smoked and those who currently smoke. Based on your answers, would you characterize birth weight in each group as relatively symmetric or skewed? Create histograms and densities of `bwt` conditioned on `BMI` quartiles and whether the mother smokes to verify your previous assertions about the shape.
 
 ```{r prob17a}
-#
+CLEANP$quart <- cut(CLEANP$BMI, breaks=quantile(CLEANP$BMI, c(0, .25, .5, .75, 1)), include.lowest=T)
+nonsmokers <- subset(CLEANP, smoke == 0)
+smokers <- subset(CLEANP, smoke == 1)
+nonsmokerStats = data.frame(mean=tapply(nonsmokers$bwt, nonsmokers$quart, mean), 
+                            sd=tapply(nonsmokers$bwt, nonsmokers$quart, sd),
+                            median=tapply(nonsmokers$bwt, nonsmokers$quart, median),
+                            IQR=tapply(nonsmokers$bwt, nonsmokers$quart, IQR))
+
+smokerStats = data.frame(mean=tapply(smokers$bwt, smokers$quart, mean), 
+                         sd=tapply(smokers$bwt, smokers$quart, sd),
+                         median=tapply(smokers$bwt, smokers$quart, median),
+                         IQR=tapply(smokers$bwt, smokers$quart, IQR))
+nonsmokerStats
+smokerStats
 ```
+
 
 ```{r prob17b}
 #
