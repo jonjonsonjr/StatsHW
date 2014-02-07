@@ -133,7 +133,12 @@ title(main="Smoker Birth Weights", ylab="Weight in Ounces")
 ```
 
 ```{r prob10b}
-#
+plot1 <- bwplot(nonsmokers, main = "Nonsmoker Birth Weights", 
+                xlab = "Weight in Ounces")
+plot2 <- bwplot(smokers, main = "Smoker Birth Weights",
+                xlab = "Weight in Ounces")
+print(plot1, position = c(0, 0, 0.5, 1), more = TRUE)
+print(plot2, position = c(0.5, 0, 1, 1))
 ```
 
 ```{r prob10c}
