@@ -283,7 +283,8 @@ smokes conditioned on `BMI` quartiles.  What do you notice using the boxplots?
 **Prob 19:** Does it appear that BMI is related to the birth weight of a baby? Create a scatterplot of birth weight (`bwt`) versus `BMI` while conditioning on BMI quartiles and whether the mother smokes to help answer the question.  Use `log(bwt)` on the $y$-axis instead of the untransformed `bwt`.
 
 ```{r prob19, fig.width = 8, tidy = FALSE}
-#
+p <- ggplot(data=CLEANP, aes(x=BMI, y=log(bwt)))
+p + geom_point() + facet_grid(smoke ~ quart)
 ```
 
 > **Prob 19 answer:** 
@@ -292,7 +293,8 @@ smokes conditioned on `BMI` quartiles.  What do you notice using the boxplots?
 **Prob 20:** Create a scatterplot of `bwt` versus `gestation` conditioned on BMI quartiles and whether the mother smokes using `ggplot2` graphics.  Fit curves to the data using `loess` and `lm` (`stat_smooth()`); and display the fitted curves in the scatterplots. What do you find interesting about the resulting graphs? 
 
 ```{r prob20, fig.width = 8}
-#
+p <- ggplot(data=CLEANP, aes(x=gestation, y=bwt))
+p + geom_point() + facet_grid(smoke ~ quart) + stat_smooth()
 ```
 
 > **Prob 20 answer:**  
