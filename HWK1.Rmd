@@ -158,10 +158,17 @@ babies who are firstborn and those who are not is **`r weightFirst - weightOther
 **Prob 12:** Create a single graph of the densities for pre-pregnancy `weight` for mothers who have never smoked and for mothers who currently smoke.  Make sure both densities appear in the same graph and have a legend.  Label the $x$-axis "Weight in Pounds".  *Extra credit if you create the requested graph using base, lattice, and ggplot2 graphics.*
 
 ```{r prob12a}
+part1<-hist(CLEAN$weight[CLEAN$smoke==0], breaks=8)
+part2<-hist(CLEAN$weight[CLEAN$smoke==1], breaks=8)
+plot(part1, main="Pre-pregnancy weight of smokers vs non-smokers", xlab="Weight in Pounds", col=rgb(0,0,1,1/4))
+plot(part2, col=rgb(1,0,0,1/4), add=T)
+
 #
 ```
 
 ```{r prob12b}
+require(ggplot2)
+ggplot() + geom_density(aes(CLEAN$weight[CLEAN$smoke == 0]), fill = "skyblue") + geom_density(aes(CLEAN$weight[CLEAN$smoke == 1]), fill = "green",alpha=I(0.2)) + labs(x = "Weight in pounds",title = "Pre-pregnancy weight of smokers vs non-smokers")
 #
 ```
 
@@ -172,6 +179,8 @@ babies who are firstborn and those who are not is **`r weightFirst - weightOther
 **Prob 13:** Characterize the pre-pregnancy distribution of `weight` for mothers who have never smoked and for mothers who currently smoke.
 
 ```{r prob13}
+site <- "http://www.stat.berkeley.edu/users/statlabs/data/babies.data"
+BABIES <- read.table(file=url(site), header=TRUE)
 nonsmokersweight <- subset(BABIES, smoke == 0)$weight
 smokersweight <- subset(BABIES, smoke == 1)$weight
 #Center
@@ -181,26 +190,33 @@ mean(smokersweight)
 sd(nonsmokersweight)
 sd(smokersweight)
 
-hist(smoke1$weight, xlab = "Weight (lbs.)",main = "Histogram of Pre-Pregnancy Smoker Weight")
-hist(smoke0$weight, xlab = "Weight (lbs.)",main = "Histogram of Pre-Pregnancy Non-Smoker Weight")
+hist(smokersweight, xlab = "Weight (lbs.)",main = "Histogram of Pre-Pregnancy Smoker Weight")
+hist(nonsmokersweight, xlab = "Weight (lbs.)",main = "Histogram of Pre-Pregnancy Non-Smoker Weight")
 #
 ```
 
-> **Prob 13 answer:** As the above histograms show, the weight distribution between smokers and non-smokers is only slightly skewed.  This is evident from comparison of the median weight of smokers **`r median(smokersweight)`** lbs. and the mean weight of non-smokers **`r mean(nonSmokersweight)`** lbs.
+> **Prob 13 answer:** As the above histograms show, the weight distribution between smokers and non-smokers is only slightly skewed.  This is evident through comparison of the median weight of smokers **`r median(smokersweight)`** lbs. and the mean weight of non-smokers **`r mean(nonsmokersweight)`** lbs.  The slight skew is reflected in the standard deviation of smokers and non-smokers respectively: **`r sd(smokersweight)`** and **`r sd(nonsmokersweight)`**. 
 
 **Prob 14:** What is the mean pre-pregnancy weight difference between mothers who do not smoke and those who do?  Can you think of any reasons not to use the mean as a measure of center to compare pre-pregnancy weights in this problem?
 
 ```{r prob14}
+nonsmokersweight <- subset(BABIES, smoke == 0)$weight
+smokersweight <- subset(BABIES, smoke == 1)$weight
+ans <- mean(smokersweight)-mean(nonsmokersweight)
 
 #
 ```
 
-> **Prob 14 answer:** 
+> **Prob 14 answer:** The mean pre-pregnancy weight difference between mothers who do not smoke and those who do is **`r mean(smokersweight)-mean(nonsmokersweight)`** pounds.
 
 
 **Prob15:** Compute the body mass index (`BMI`) for each mother in `CLEAN`.  Recall that `BMI` is defined as $\text{kg}/\text{m}^2$ (0.0254 m = 1 in., and 0.45359 kg = 1 lb.).  Add the variables weight in kg, height in m, and BMI to `CLEAN` and store the result in `CLEANP`.  Show the first six rows of `CLEANP`.
 
 ```{r prob15}
+CLEANP<-CLEAN
+CLEANP$BMI<-CLEAN$weight*0.45359/(CLEAN$height*0.0254)^2
+head(CLEANP)
+
 #
 ```
 
@@ -208,6 +224,7 @@ hist(smoke0$weight, xlab = "Weight (lbs.)",main = "Histogram of Pre-Pregnancy No
 help determine the shape of the BMI distribution.  Label the $x$-axis "BMI ($kg/m^2$)".
 
 ```{r prob16}
+hist(CLEANP$BMI, xlab="BMI(kg/m^2)")
 #
 ```
 
