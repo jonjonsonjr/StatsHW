@@ -21,7 +21,7 @@ ggplot(data = data.frame(x = MIN), aes(x = x)) + geom_density() + theme_bw()
 
 ```
 
-> **Prob 2 answer:** The mean of the sampling distribution is **`r mean(MIN)`** and the value of the parameter is 3.
+> **Prob 2 answer:** The mean of the sampling distribution is **`r mean(MIN)`** and the value of the parameter is **`r min(Population)`**.
 
 
 5. Let X1,X2, . . . , Xn be a random sample from some distribution and suppose
