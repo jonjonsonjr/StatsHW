@@ -1,3 +1,6 @@
+---
+output: html_document
+---
 
 ```{r}
 library(ggplot2)
@@ -18,7 +21,6 @@ MIN
 mean(MIN)  # mean of the sampling distribution
 # This statistic is an estimate of the population Min (3).
 ggplot(data = data.frame(x = MIN), aes(x = x)) + geom_density() + theme_bw()
-
 ```
 
 > **Prob 2 answer:** The mean of the sampling distribution is **`r mean(MIN)`** and the value of the parameter is **`r min(Population)`**.
@@ -27,6 +29,14 @@ ggplot(data = data.frame(x = MIN), aes(x = x)) + geom_density() + theme_bw()
 5. Let X1,X2, . . . , Xn be a random sample from some distribution and suppose
 Y = T (X1,X2, . . . , Xn) is a statistic. Suppose the sampling distribution of Y
 has pdf f (y) = (3/8)y2 for 0 ≤ y ≤ 2. Find P(0 ≤ Y ≤ 1/5).
+
+```{r}
+f <- function(x){3*x^2/8}
+integrate(f, 0, 2)$value # must be 1 for it to be a valid pdf
+integrate(f, 0, 1/5)$value
+```
+
+> **Prob 5 answer:** The probability that 0 <= Y <= 1/5 is **`r integrate(f, 0, 1/5)$value`**.
 
 12. A friend claims that she has drawn a random sample of size 30 from the exponential
 distribution with λ = 1/10. The mean of her sample is 12.
