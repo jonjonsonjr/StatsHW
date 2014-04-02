@@ -1,3 +1,12 @@
+# Standard error = Standard deviation
+# Normal Dist in R are in opposite order from the book
+# Also our book uses variance so you take the square root of it (or something)
+# mu_xbar = mean of samples = mu
+# sigmasq_xbar = variance of the distribution of the sample means = sigmasq_x / n_x
+# central limit theorem:
+#   If you take a "sufficiently large" sample, the resulting sampling distribution for the sample
+#   mean will look approximately normal
+
 Problems 2, 5, 12, 13, 14, 15, 17, 21
 
 2. Consider the population {3, 6, 7, 9, 11, 14}. For samples of size 3 without replacement,
@@ -45,12 +54,16 @@ standard error are close to the theoretical mean and the standard error.
 (c) Use your simulation to find P(W < −1.5). Calculate an exact answer and
 compare.
 
+# Use pnorm and what we found in 14.a to find an exact answer
+
 15. Let X1,X2, . . . , Xn be a random sample from N(0, 1). Let W = X(1 to 2) + X(2 to 2) + ... + x(n to 2)
 
 Describe the sampling distribution of W by running a simulation,
 using n = 2. What is the mean and variance of the sampling distribution ofW?
 Repeat using n = 4, n = 5. What observations or conjectures do you have for
 general n?
+
+# Look up chisq stuff
 
 17. Let X1,X2, . . . , X20 i.∼i.d. Exp(2). Let X = Sum from i = 1 to 20 Xsubi.
 
