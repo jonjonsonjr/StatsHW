@@ -46,11 +46,26 @@ abline(h=0)
 12. A friend claims that she has drawn a random sample of size 30 from the exponential
 distribution with λ = 1/10. The mean of her sample is 12.
 
-(a) What is the expected value of a sample mean?
+(a) What is the expected value of a sample mean? <br>
 (b) Run a simulation by drawing 1000 random samples, each of size 30, from
 Exp(1/10) and then compute the mean. What proportion of the sample
-means are as large as or larger than 12?
-(c) Is a mean of 12 unusual for a sample of size 30 from Exp(1/10)?
+means are as large as or larger than 12? <br>
+(c) Is a mean of 12 unusual for a sample of size 30 from Exp(1/10)? <br>
+
+```{r}
+set.seed(13)
+sims <- 1000
+xbar <- numeric(sims)
+for(i in 1:sims){
+  xbar[i] <- mean(rexp(30, 1/10))
+}
+mean(xbar)
+mean(xbar >= 12)
+library(ggplot2)
+ggplot(data = data.frame(x = xbar), aes(x = x)) + geom_density() + theme_bw() + stat_function(fun = dgamma, args = list(30*1, 30/10), lty = "dashed", color = "red")
+```
+
+> **Prob 12 answer:** The expected value of a sample mean is 1/λ, in this case **`r 1/(1/10)`**. The value of the sample mean is **`r mean(xbar)`**. The proportion of sample means as large as or larger than 12 is **`r mean(xbar >= 12)`**. Because **`r mean(xbar >= 12)`** is greater than 0.05, we cannot say that a mean of 12 is unusual for a sample of size 30 from Exp(1/10).
 
 13. Let X1,X2, . . .,X10
 i.∼i.d. N(20, 82) and Y1, Y2, . . ., Y15
