@@ -1,11 +1,8 @@
-# Standard error = Standard deviation
-# Normal Dist in R are in opposite order from the book
-# Also our book uses variance so you take the square root of it (or something)
-# mu_xbar = mean of samples = mu
-# sigmasq_xbar = variance of the distribution of the sample means = sigmasq_x / n_x
-# central limit theorem:
-#   If you take a "sufficiently large" sample, the resulting sampling distribution for the sample
-#   mean will look approximately normal
+
+```{r}
+library(ggplot2)
+library(lattice)
+```
 
 Problems 2, 5, 12, 13, 14, 15, 17, 21
 
@@ -15,8 +12,16 @@ is the mean of the sampling distribution? The statistic is an estimate of some
 parameter—what is the value of that parameter?
 
 ```{r}
-# Problem 2
+Population <- c(3, 6, 7, 9, 11, 14)
+MIN <- apply(combn(Population, 3), 2, min)
+MIN
+mean(MIN)  # mean of the sampling distribution
+# This statistic is an estimate of the population Min (3).
+ggplot(data = data.frame(x = MIN), aes(x = x)) + geom_density() + theme_bw()
+
 ```
+
+> **Prob 2 answer:** The mean of the sampling distribution is **`r mean(MIN)`** and the value of the parameter is 3.
 
 
 5. Let X1,X2, . . . , Xn be a random sample from some distribution and suppose
