@@ -34,6 +34,11 @@ has pdf f (y) = (3/8)y2 for 0 ≤ y ≤ 2. Find P(0 ≤ Y ≤ 1/5).
 f <- function(x){3*x^2/8}
 integrate(f, 0, 2)$value # must be 1 for it to be a valid pdf
 integrate(f, 0, 1/5)$value
+
+curve(f)
+abline(v=0)
+abline(v=1/5)
+abline(h=0)
 ```
 
 > **Prob 5 answer:** The probability that 0 <= Y <= 1/5 is **`r integrate(f, 0, 1/5)$value`**.
