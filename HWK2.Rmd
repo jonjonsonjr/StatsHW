@@ -117,14 +117,37 @@ compare.
 
 # Use pnorm and what we found in 14.a to find an exact answer
 
-15. Let X1,X2, . . . , Xn be a random sample from N(0, 1). Let W = X(1 to 2) + X(2 to 2) + ... + x(n to 2)
+15. Let X_1, X_2, ..., X_n be a random sample from N(0, 1). Let W = X_1^2 + X_2^2 + ... + x_n^2
 
 Describe the sampling distribution of W by running a simulation,
-using n = 2. What is the mean and variance of the sampling distribution ofW?
+using n = 2. What is the mean and variance of the sampling distribution of W?
 Repeat using n = 4, n = 5. What observations or conjectures do you have for
 general n?
 
 # Look up chisq stuff
+
+```{r}
+set.seed(13)
+sims <- 10000
+WE2 <- numeric(sims)
+WE4 <- numeric(sims)
+WE5 <- numeric(sims)
+
+for (i in 1:sims) {
+  WE2[i] <- sum(rnorm(2)^2)
+  WE4[i] <- sum(rnorm(4)^2)
+  WE5[i] <- sum(rnorm(5)^2)
+}
+
+mean(WE2)
+mean(WE4)
+mean(WE5)
+var(WE2)
+var(WE4)
+var(WE5)
+```
+
+> **Prob 15 answer:** The mean of W is approximately n. The variance of W is approximately 2n.
 
 17. Let X1,X2, . . . , X20 i.∼i.d. Exp(2). Let X = sum [1,20] X_i.
 
