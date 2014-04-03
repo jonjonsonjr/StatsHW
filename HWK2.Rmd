@@ -79,6 +79,27 @@ the standard error.
 (c) Use your simulation to find P(W < 40). Calculate an exact answer and
 compare.
 
+```{r}
+set.seed(13)
+sims <- 10000
+xbar <- numeric(sims)
+ybar <- numeric(sims)
+for(i in 1:sims){
+  xbar[i] <- mean(rnorm(10, 20, 8))
+  ybar[i] <- mean(rnorm(15, 16, 7))
+}
+W <- xbar + ybar
+mean(W)  # close to 36
+sd(W)    # close to 3.11
+mean(W < 40)
+foo <- sqrt(8^2/10 + 7^2/15)
+# Exact answer
+pnorm(40, 36, foo)
+
+```
+
+> **Prob 13(a) answer:** The exact sampling distribution of W = **$\hat{X}$ + $\hat{Y}$ ~ N(`r mean(W)`,`r sd(W)^2`)**.
+
 14. Let X1,X2, . . . , X9
 i.∼i.d. N(7, 32) and Y1, Y2, . . . , Y12
 i.∼i.d. N(10, 52). LetW = Xhat - Yhat.
@@ -100,11 +121,27 @@ general n?
 
 # Look up chisq stuff
 
-17. Let X1,X2, . . . , X20 i.∼i.d. Exp(2). Let X = Sum from i = 1 to 20 Xsubi.
+17. Let X1,X2, . . . , X20 i.∼i.d. Exp(2). Let X = sum [1,20] X_i.
 
 (a) Simulate the sampling distribution of X in R.
 (b) From your simulation, find E [X] and Var[X].
 (c) From your simulation, find P(X ≤ 10).
+
+```{r}
+set.seed(13)
+sims <- 10000
+WE <- numeric(sims)
+for(i in 1:sims){
+  WE[i] <- sum(rexp(20, 2))
+}
+mean(WE)
+var(WE)
+mean(WE <= 10)
+```
+
+> **Prob 17b answer:** The expected value for X is **`r mean(WE)`** and the variance of X is **`r var(WE)`**.
+
+> **Prob 17c answer:** The probability that X <= 10 is **`r mean(WE <= 10)`**.
 
 21. Let X1,X2 i.∼i.d. F with corresponding pdf f (x) = 2/x2, 1 ≤ x ≤ 2.
 (a) Find the pdf of Xmax.
