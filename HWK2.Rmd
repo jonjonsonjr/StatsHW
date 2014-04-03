@@ -89,6 +89,7 @@ for(i in 1:sims){
   ybar[i] <- mean(rnorm(15, 16, 7))
 }
 W <- xbar + ybar
+hist(W)
 mean(W)  # close to 36
 sd(W)    # close to 3.11
 mean(W < 40)
@@ -99,6 +100,10 @@ pnorm(40, 36, foo)
 ```
 
 > **Prob 13(a) answer:** The exact sampling distribution of W = **$\hat{X}$ + $\hat{Y}$ ~ N(`r mean(W)`,`r sd(W)^2`)**.
+
+> **Prob 13(b) answer:** 
+
+> **Prob 13(c) answer:** Using our simulation to find P(W < 40) to calculate the exact answer yielded **`r pnorm(40, 36, foo)`**.
 
 14. Let X1,X2, . . . , X9
 i.∼i.d. N(7, 32) and Y1, Y2, . . . , Y12
