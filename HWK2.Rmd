@@ -26,9 +26,7 @@ ggplot(data = data.frame(x = MIN), aes(x = x)) + geom_density() + theme_bw()
 > **Prob 2 answer:** The mean of the sampling distribution is **`r mean(MIN)`** and the value of the parameter is **`r min(Population)`**.
 
 
-5. Let X1,X2, . . . , Xn be a random sample from some distribution and suppose
-Y = T (X1,X2, . . . , Xn) is a statistic. Suppose the sampling distribution of Y
-has pdf f (y) = (3/8)y2 for 0 ≤ y ≤ 2. Find P(0 ≤ Y ≤ 1/5).
+> 5. Let X1,X2, . . . , Xn be a random sample from some distribution and suppose Y = T (X1,X2, . . . , Xn) is a statistic. Suppose the sampling distribution of Y has pdf f(y) = (3/8)y^2 for 0 ≤ y ≤ 2. Find P(0 ≤ Y ≤ 1/5).
 
 ```{r}
 f <- function(x){3*x^2/8}
@@ -170,7 +168,25 @@ mean(WE <= 10)
 
 > **Prob 17c answer:** The probability that X <= 10 is **`r mean(WE <= 10)`**.
 
-21. Let X1,X2 i.∼i.d. F with corresponding pdf f (x) = 2/x2, 1 ≤ x ≤ 2.
+21. Let X1,X2 ~ F with corresponding pdf f (x) = 2/x2, 1 ≤ x ≤ 2.
 (a) Find the pdf of Xmax.
 (b) Find the expected value of Xmax.
+ 
+\eqref{partb} The pdf for $X_{\textrm{max}}$ is:
+\begin{equation}\label{Xmax}
+f_{\textrm{max}}(x) = nF^{n-1}(x)f(x)
+\end{equation}
 
+Since $F(x) = \int_{0}^{x}2/t^2\,dt = -2/x, 1\leq x \leq 2,$ it follows that 
+$$f_{\textrm{max}}(x) = n\left(-2/x\right)^{n-1}2/x^2,  1\leq x \leq 2$$
+
+```{r}
+# f <- function(x){2/x^2}
+f <- function(x){}
+fmax <- function(x){2*(-2/x)^(2-1) * 2/x^2}
+curve(fmax, from=1,to=2)
+integrate(fmax, 1, 2)
+#curve(f, from=1, to=2)
+#ans <- integrate(f, 0.92, 1)$value
+#ans
+```
