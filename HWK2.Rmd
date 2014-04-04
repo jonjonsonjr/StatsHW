@@ -11,10 +11,7 @@ Problems 2, 5, 12, 13, 14, 15, 17, 21
 
 # Problem 2
 
-Consider the population {3, 6, 7, 9, 11, 14}. For samples of size 3 without replacement,
-find (and plot) the sampling distribution of the minimum. What
-is the mean of the sampling distribution? The statistic is an estimate of some
-parameter—what is the value of that parameter?
+Consider the population {3, 6, 7, 9, 11, 14}. For samples of size 3 without replacement, find (and plot) the sampling distribution of the minimum. What is the mean of the sampling distribution? The statistic is an estimate of some parameter—what is the value of that parameter?
 
 ```{r}
 Population <- c(3, 6, 7, 9, 11, 14)
@@ -29,7 +26,9 @@ ggplot(data = data.frame(x = MIN), aes(x = x)) + geom_density() + theme_bw()
 
 # Problem 5
 
-Let X1,X2, . . . , Xn be a random sample from some distribution and suppose Y = T (X1,X2, . . . , Xn) is a statistic. Suppose the sampling distribution of Y has pdf $f(y) = (3/8)y^2, 0 \leq y \leq 2.$ Find P(0 $\leq Y /leq$ 1/5).
+Let $X_1, X_2, \ldots , X_n$ be a random sample from some distribution and suppose $Y = T(X_1, X_2, \ldots, X_n)$ is a statistic. 
+
+Suppose the sampling distribution of Y has pdf $f(y) = \frac{3}{8}y^2, 0 \leq y \leq 2.$ Find $P(0 \leq Y \leq \frac{1}{5})$.
 
 ```{r}
 f <- function(x){3*x^2/8}
@@ -72,7 +71,7 @@ ggplot(data = data.frame(x = xbar), aes(x = x)) + geom_density() + theme_bw() + 
 
 # Problem 13
 
-Let $X_1, X_2, \ldots X_10 \overset{iid}\sim $ N(20, 82) and $Y_1, Y_2, \ldots Y_15 \overset{iid}\sim$ N(16, 72). Let W = Xhat + Yhat.
+Let $X_1, X_2, \ldots X_{10} \overset{iid}\sim $ N(20, 82) and $Y_1, Y_2, \ldots Y_{15} \overset{iid}\sim$ N(16, 72). Let W = $\hat{X} + \hat{Y}$.
 
 (a) Give the exact sampling distribution of W.
 (b) Simulate the sampling distribution in R and plot your results. Check that
@@ -109,12 +108,11 @@ pnorm(40, 36, foo)
 
 # Problem 14
 
-Let $X_1, X_2, \ldots , X_9$
-$\tilde{i.i.d.} N(7, 3^2)$ and $Y1, Y2, . . . , Y12$
-$\tilde{i.i.d.} N(10, 5^2)$. Let $W = \hat{X} - \hat{Y}$.
-a. Give the exact sampling distribution of $W$.
-b. Simulate the sampling distribution of $W$ in R and plot your results (adapt code from the previous exercise). Check that the simulated mean and the standard error are close to the theoretical mean and the standard error.
-c. Use your simulation to find $P(W < -1.5)$. Calculate an exact answer and compare.
+Let $X_1, X_2, \ldots , X_9 \overset{iid}\sim N(7, 3^2)$ and $Y_1, Y_2, \ldots , Y_{12} \overset{iid}\sim N(10, 5^2)$. Let $W = \hat{X} - \hat{Y}$.
+
+(a) Give the exact sampling distribution of $W$.
+(b) Simulate the sampling distribution of $W$ in R and plot your results (adapt code from the previous exercise). Check that the simulated mean and the standard error are close to the theoretical mean and the standard error.
+(c) Use your simulation to find $P(W < -1.5)$. Calculate an exact answer and compare.
 
 ```{r}
 set.seed(13)
@@ -140,7 +138,7 @@ pnorm(-1.5, -3, sqrt(3^2/9 + 5^2/12))
 
 # Problem 15
 
-Let X_1, X_2, ..., X_n be a random sample from N(0, 1). Let W = X_1^2 + X_2^2 + ... + x_n^2
+Let $X_1, X_2, \ldots X_n$ be a random sample from N(0, 1). Let W = $X_1^2 + X_2^2 + \ldots + X_n^2$.
 
 Describe the sampling distribution of W by running a simulation,
 using n = 2. What is the mean and variance of the sampling distribution of W?
@@ -169,11 +167,11 @@ var(WE4)
 var(WE5)
 ```
 
-> **Prob 15 answer:** The mean of W is approximately n. The variance of W is approximately 2n.
+> **Prob 15 answer:** For n=2, the mean of W is **`r mean(WE2)` and the variance of W is **`r var(WE2)`**. For n=4, the mean of W is **`r mean(WE4)` and the variance of W is **`r var(WE4)`**. For n=5, the mean of W is **`r mean(WE5)` and the variance of W is **`r var(WE5)`**. The mean of W is approximately **n**. The variance of W is approximately **2n**.
 
 # Problem 17
 
-Let $X_1, X_2, \ldots X_20 \overset{iid}\sim $ Exp(2). Let X = sum [1,20] X_i.
+Let $X_1, X_2, \ldots X_{20} \overset{iid}\sim $ Exp(2). Let X = $\sum\limits_{i=1}^{20} X_i$.
 
 (a) Simulate the sampling distribution of X in R.
 (b) From your simulation, find E [X] and Var[X].
@@ -197,24 +195,17 @@ mean(WE <= 10)
 
 # Problem 21
 
-Let X1,X2 ~ F with corresponding pdf f (x) = 2/x2, 1 $\leq$ x $\leq$ 2.
-(a) Find the pdf of Xmax.
-(b) Find the expected value of Xmax.
- 
-\eqref{partb} The pdf for $X_{\textrm{max}}$ is:
-\begin{equation}\label{Xmax}
-f_{\textrm{max}}(x) = nF^{n-1}(x)f(x)
-\end{equation}
+Let $X_1, X_2 \overset{iid}\sim$ F with corresponding pdf $f(x) = \frac{2}{x^2}, 1 \leq x \leq 2$.
 
-Since $F(x) = \int_{0}^{x}2/t^2\,dt = -2/x, 1\leq x \leq 2,$ it follows that 
-$$f_{\textrm{max}}(x) = n\left(-2/x\right)^{n-1}2/x^2,  1\leq x \leq 2$$
+(a) Find the pdf of $X_{max}$.
+(b) Find the expected value of $X_{max}$.
 
 ```{r}
-# f <- function(x){2/x^2}
-fmax <- function(x){2*(-2/x)^(2-1) * 2/x^2}
-curve(fmax, from=1,to=2)
-integrate(fmax, 1, 2)
-#curve(f, from=1, to=2)
-#ans <- integrate(f, 0.92, 1)$value
-#ans
+f <- function(x){x * 2*(2 -2/x)^(2-1) * 2/x^2}
+curve(f, from=1,to=2)
+ans <- integrate(f, 1, 2)$val
 ```
+
+> **Prob 21a answer:** The pdf of $X_{max}$ is **$f_{\textrm{max}}(x) = n\left(2 - 2/x\right)^{n-1}2/x^2,  1\leq x \leq 2$**.
+
+> **Prob 21b answer:** The expected value of $X_{max}$ is **`r ans`**.
