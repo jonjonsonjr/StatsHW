@@ -124,7 +124,6 @@ using n = 2. What is the mean and variance of the sampling distribution of W?
 Repeat using n = 4, n = 5. What observations or conjectures do you have for
 general n?
 
-# Look up chisq stuff
 
 ```{r}
 set.seed(13)
