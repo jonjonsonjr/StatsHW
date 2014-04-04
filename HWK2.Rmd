@@ -1,5 +1,5 @@
 ---
-output: html_document
+output: pdf_document
 ---
 
 ```{r}
@@ -9,7 +9,9 @@ library(lattice)
 
 Problems 2, 5, 12, 13, 14, 15, 17, 21
 
-2. Consider the population {3, 6, 7, 9, 11, 14}. For samples of size 3 without replacement,
+# Problem 2
+
+Consider the population {3, 6, 7, 9, 11, 14}. For samples of size 3 without replacement,
 find (and plot) the sampling distribution of the minimum. What
 is the mean of the sampling distribution? The statistic is an estimate of some
 parameter—what is the value of that parameter?
@@ -25,8 +27,9 @@ ggplot(data = data.frame(x = MIN), aes(x = x)) + geom_density() + theme_bw()
 
 > **Prob 2 answer:** The mean of the sampling distribution is **`r mean(MIN)`** and the value of the parameter is **`r min(Population)`**.
 
+# Problem 5
 
-> 5. Let X1,X2, . . . , Xn be a random sample from some distribution and suppose Y = T (X1,X2, . . . , Xn) is a statistic. Suppose the sampling distribution of Y has pdf f(y) = (3/8)y^2 for 0 ≤ y ≤ 2. Find P(0 ≤ Y ≤ 1/5).
+Let X1,X2, . . . , Xn be a random sample from some distribution and suppose Y = T (X1,X2, . . . , Xn) is a statistic. Suppose the sampling distribution of Y has pdf $f(y) = (3/8)y^2, 0 \leq y \leq 2.$ Find P(0 $\leq Y /leq$ 1/5).
 
 ```{r}
 f <- function(x){3*x^2/8}
@@ -41,8 +44,10 @@ abline(h=0)
 
 > **Prob 5 answer:** The probability that 0 <= Y <= 1/5 is **`r integrate(f, 0, 1/5)$value`**.
 
-12. A friend claims that she has drawn a random sample of size 30 from the exponential
-distribution with λ = 1/10. The mean of her sample is 12.
+# Problem 12
+
+A friend claims that she has drawn a random sample of size 30 from the exponential
+distribution with $\lambda$ = 1/10. The mean of her sample is 12.
 
 (a) What is the expected value of a sample mean? <br>
 (b) Run a simulation by drawing 1000 random samples, each of size 30, from
@@ -63,12 +68,11 @@ library(ggplot2)
 ggplot(data = data.frame(x = xbar), aes(x = x)) + geom_density() + theme_bw() + stat_function(fun = dgamma, args = list(30*1, 30/10), lty = "dashed", color = "red")
 ```
 
-> **Prob 12 answer:** The expected value of a sample mean is 1/λ, in this case **`r 1/(1/10)`**. The value of the sample mean is **`r mean(xbar)`**. The proportion of sample means as large as or larger than 12 is **`r mean(xbar >= 12)`**. Because **`r mean(xbar >= 12)`** is greater than 0.05, we cannot say that a mean of 12 is unusual for a sample of size 30 from Exp(1/10).
+> **Prob 12 answer:** The expected value of a sample mean is $1/\lambda$, in this case **`r 1/(1/10)`**. The value of the sample mean is **`r mean(xbar)`**. The proportion of sample means as large as or larger than 12 is **`r mean(xbar >= 12)`**. Because **`r mean(xbar >= 12)`** is greater than 0.05, we cannot say that a mean of 12 is unusual for a sample of size 30 from Exp(1/10).
 
-13. Let X1,X2, . . .,X10
-i.∼i.d. N(20, 82) and Y1, Y2, . . ., Y15
-i.∼i.d. N(16, 72). Let
-W = Xhat + Yhat.
+# Problem 13
+
+Let $X_1, X_2, \ldots X_10 \overset{iid}\sim $ N(20, 82) and $Y_1, Y_2, \ldots Y_15 \overset{iid}\sim$ N(16, 72). Let W = Xhat + Yhat.
 
 (a) Give the exact sampling distribution of W.
 (b) Simulate the sampling distribution in R and plot your results. Check that
@@ -103,15 +107,14 @@ pnorm(40, 36, foo)
 
 > **Prob 13(c) answer:** From our simulation, P(W < 40) yields **`r pnorm(40, 36, foo)`**.
 
-14. Let $X1,X2, . . . , X9$
+# Problem 14
+
+Let $X_1, X_2, \ldots , X_9$
 $\tilde{i.i.d.} N(7, 3^2)$ and $Y1, Y2, . . . , Y12$
-$\tilde{i.i.d.} N(10, 5^2)$. Let $W = \hat{X} - \hat{Y}$.<br>
-a. Give the exact sampling distribution of $W$.<br>
-b. Simulate the sampling distribution of $W$ in R and plot your results (adapt
-code from the previous exercise). Check that the simulated mean and the
-standard error are close to the theoretical mean and the standard error.<br>
-c. Use your simulation to find $P(W < −1.5)$. Calculate an exact answer and
-compare.<br>
+$\tilde{i.i.d.} N(10, 5^2)$. Let $W = \hat{X} - \hat{Y}$.
+a. Give the exact sampling distribution of $W$.
+b. Simulate the sampling distribution of $W$ in R and plot your results (adapt code from the previous exercise). Check that the simulated mean and the standard error are close to the theoretical mean and the standard error.
+c. Use your simulation to find $P(W < -1.5)$. Calculate an exact answer and compare.
 
 ```{r}
 set.seed(13)
@@ -133,9 +136,11 @@ pnorm(-1.5, -3, sqrt(3^2/9 + 5^2/12))
 
 **Prob 14(a) answer:** The exact sampling distribution of $W$ is given by $W \tilde{} N(-3, `r sqrt(3^2/9 + 5^2/12)`)$. <br>
 **Prob 14(b) answer:** See plot above.<br>
-**Prob 15(c) answer:** By our simulation, $P(W < −1.5) =$ `r mean(W < -1.5)`. The exact value for $P(W < −1.5)$ is `r pnorm(-1.5, -3, sqrt(3^2/9 + 5^2/12))`. The simulated value has `r (mean(W < -1.5) - pnorm(-1.5, -3, sqrt(3^2/9 + 5^2/12)))/ pnorm(-1.5, -3, sqrt(3^2/9 + 5^2/12)) * 100`% error.
+**Prob 15(c) answer:** By our simulation, $P(W < -1.5) =$ `r mean(W < -1.5)`. The exact value for $P(W < -1.5)$ is `r pnorm(-1.5, -3, sqrt(3^2/9 + 5^2/12))`. The simulated value has `r (mean(W < -1.5) - pnorm(-1.5, -3, sqrt(3^2/9 + 5^2/12)))/ pnorm(-1.5, -3, sqrt(3^2/9 + 5^2/12)) * 100`% error.
 
-15. Let X_1, X_2, ..., X_n be a random sample from N(0, 1). Let W = X_1^2 + X_2^2 + ... + x_n^2
+# Problem 15
+
+Let X_1, X_2, ..., X_n be a random sample from N(0, 1). Let W = X_1^2 + X_2^2 + ... + x_n^2
 
 Describe the sampling distribution of W by running a simulation,
 using n = 2. What is the mean and variance of the sampling distribution of W?
@@ -166,11 +171,13 @@ var(WE5)
 
 > **Prob 15 answer:** The mean of W is approximately n. The variance of W is approximately 2n.
 
-17. Let X1,X2, . . . , X20 i.∼i.d. Exp(2). Let X = sum [1,20] X_i.
+# Problem 17
+
+Let $X_1, X_2, \ldots X_20 \overset{iid}\sim $ Exp(2). Let X = sum [1,20] X_i.
 
 (a) Simulate the sampling distribution of X in R.
 (b) From your simulation, find E [X] and Var[X].
-(c) From your simulation, find P(X ≤ 10).
+(c) From your simulation, find P(X $\leq$ 10).
 
 ```{r}
 set.seed(13)
@@ -188,7 +195,9 @@ mean(WE <= 10)
 
 > **Prob 17c answer:** The probability that X <= 10 is **`r mean(WE <= 10)`**.
 
-21. Let X1,X2 ~ F with corresponding pdf f (x) = 2/x2, 1 ≤ x ≤ 2.
+# Problem 21
+
+Let X1,X2 ~ F with corresponding pdf f (x) = 2/x2, 1 $\leq$ x $\leq$ 2.
 (a) Find the pdf of Xmax.
 (b) Find the expected value of Xmax.
  
@@ -202,7 +211,6 @@ $$f_{\textrm{max}}(x) = n\left(-2/x\right)^{n-1}2/x^2,  1\leq x \leq 2$$
 
 ```{r}
 # f <- function(x){2/x^2}
-f <- function(x){}
 fmax <- function(x){2*(-2/x)^(2-1) * 2/x^2}
 curve(fmax, from=1,to=2)
 integrate(fmax, 1, 2)
