@@ -103,17 +103,37 @@ pnorm(40, 36, foo)
 
 > **Prob 13(c) answer:** From our simulation, P(W < 40) yields **`r pnorm(40, 36, foo)`**.
 
-14. Let X1,X2, . . . , X9
-i.∼i.d. N(7, 32) and Y1, Y2, . . . , Y12
-i.∼i.d. N(10, 52). LetW = Xhat - Yhat.
-(a) Give the exact sampling distribution of W.
-(b) Simulate the sampling distribution of W in R and plot your results (adapt
+14. Let $X1,X2, . . . , X9$
+$\tilde{i.i.d.} N(7, 3^2)$ and $Y1, Y2, . . . , Y12$
+$\tilde{i.i.d.} N(10, 5^2)$. Let $W = \hat{X} - \hat{Y}$.<br>
+a. Give the exact sampling distribution of $W$.<br>
+b. Simulate the sampling distribution of $W$ in R and plot your results (adapt
 code from the previous exercise). Check that the simulated mean and the
-standard error are close to the theoretical mean and the standard error.
-(c) Use your simulation to find P(W < −1.5). Calculate an exact answer and
-compare.
+standard error are close to the theoretical mean and the standard error.<br>
+c. Use your simulation to find $P(W < −1.5)$. Calculate an exact answer and
+compare.<br>
 
-# Use pnorm and what we found in 14.a to find an exact answer
+```{r}
+set.seed(13)
+sims <- 10000
+xbar <- numeric(sims)
+ybar <- numeric(sims)
+for(i in 1:sims){
+  xbar[i] <- mean(rnorm(9, 7, 3))
+  ybar[i] <- mean(rnorm(12, 10, 5))
+}
+W <- xbar - ybar
+ggplot(data = data.frame(x = W), aes(x = x)) + geom_density() + theme_bw() + geom_vline(xintercept = mean(W), color="red") + geom_vline(xintercept=-3, color="blue") + geom_vline(xintercept=sd(W), color="yellow") + geom_vline(xintercept=1.76, color="green") + annotate("text",x=-11,y=c(.21,.2,.19,.18),label=c("Simulated Mean","Theoretical Mean", "Simulated Standard Error", "Theoretical Standard Error"),hjust=0,color=c("red", "blue", "yellow", "green"))
+mean(W)  # close to -3
+sd(W)    # close to 1.76
+mean(W < -1.5)
+# Exact answer
+pnorm(-1.5, -3, sqrt(3^2/9 + 5^2/12))
+```
+
+**Prob 14(a) answer:** The exact sampling distribution of $W$ is given by $W \tilde{} N(-3, `r sqrt(3^2/9 + 5^2/12)`)$. <br>
+**Prob 14(b) answer:** See plot above.<br>
+**Prob 15(c) answer:** By our simulation, $P(W < −1.5) =$ `r mean(W < -1.5)`. The exact value for $P(W < −1.5)$ is `r pnorm(-1.5, -3, sqrt(3^2/9 + 5^2/12))`. The simulated value has `r (mean(W < -1.5) - pnorm(-1.5, -3, sqrt(3^2/9 + 5^2/12)))/ pnorm(-1.5, -3, sqrt(3^2/9 + 5^2/12)) * 100`% error.
 
 15. Let X_1, X_2, ..., X_n be a random sample from N(0, 1). Let W = X_1^2 + X_2^2 + ... + x_n^2
 
