@@ -132,9 +132,11 @@ mean(W < -1.5)
 pnorm(-1.5, -3, sqrt(3^2/9 + 5^2/12))
 ```
 
-**Prob 14(a) answer:** The exact sampling distribution of $W$ is given by $W \tilde{} N(-3, `r sqrt(3^2/9 + 5^2/12)`)$. <br>
-**Prob 14(b) answer:** See plot above.<br>
-**Prob 15(c) answer:** By our simulation, $P(W < -1.5) =$ `r mean(W < -1.5)`. The exact value for $P(W < -1.5)$ is `r pnorm(-1.5, -3, sqrt(3^2/9 + 5^2/12))`. The simulated value has `r (mean(W < -1.5) - pnorm(-1.5, -3, sqrt(3^2/9 + 5^2/12)))/ pnorm(-1.5, -3, sqrt(3^2/9 + 5^2/12)) * 100`% error.
+**Prob 14(a) answer:** The exact sampling distribution of $W$ is given by $W \tilde{} N(-3, `r sqrt(3^2/9 + 5^2/12)`)$.
+
+**Prob 14(b) answer:** See plot above.
+
+**Prob 14(c) answer:** By our simulation, $P(W < -1.5) =$ `r mean(W < -1.5)`. The exact value for $P(W < -1.5)$ is `r pnorm(-1.5, -3, sqrt(3^2/9 + 5^2/12))`. The simulated value has `r (mean(W < -1.5) - pnorm(-1.5, -3, sqrt(3^2/9 + 5^2/12)))/ pnorm(-1.5, -3, sqrt(3^2/9 + 5^2/12)) * 100`% error.
 
 # Problem 15
 
